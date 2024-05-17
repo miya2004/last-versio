@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trends and developments - ICT Media & Design</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="new.css" />
+  </head>
+  <body id="page2">
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <nav>
+        <ul>
+          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li>
+            <a href="#">Learning Outcomes</a>
+            <ul class="dropdown">
+              <li><a href="technical.html">Technical Skills</a></li>
+              <li><a href="proffesional.html">Professional Skills</a></li>
+            </ul>
+          </li>
+          <li><a href="#">References</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container" data-scroll="container">
+        <section class="section" data-scroll="section" id="main-page">
+          <div class="page">
+            <p class="text">
+              <span class="text__first">
+                <span class="text__word">Interactive prototypes</span>
+                <span class="text__first-bg"></span>
+              </span>
+              <br />
+              <span class="text__second">
+                <span class="text__word">ICT Media & Design</span>
+                <span class="text__second-bg"></span>
+              </span>
+            </p>
+            <div class="scroll-down">SCROLL</div>
+          </div>
+        </section>
+
+        <section class="section" data-scroll="section" id="about">
+          <div class="content">
+            <div>
+              <h2>Learning goal</h2>
+              <p>
+                You show iterations in the work process and you explain how feedback from users and experts has contributed to your design choices. Your design meets the needs of the end user and is aesthetically justified.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Action</h2>
+                <p>
+                  Created sketches, wireframes, and prototypes using tools like Figma before coding the website.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Research</h2>
+                <p>
+                  Studied HTML, CSS, and JavaScript to create interactive and purposeful interactions between the user and the website.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Feedback</h2>
+                <p>
+                  Received feedback on the prototypes from teachers and classmates, which helped refine the design and functionality.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Reflection</h2>
+                <p>
+                  Learned the importance of creating prototypes as input for the development process and using structure and style languages like HTML, CSS, and JavaScript to create interactive digital products.
+                </p>
+              </div>
+            </div>
+          </section>
+
+      </div>
+    </main>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      const $container = document.querySelector('.container');
+      const $sections = gsap.utils.toArray("[data-scroll='section']");
+      const $images = gsap.utils.toArray("[data-scroll='image']");
+
+      document.querySelectorAll(".anchor").forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute("href");
+          const target = document.querySelector(targetId);
+          if (target) {
+            const containerRect = $container.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const scrollX = targetRect.left - containerRect.left;
+
+            gsap.to($container, {
+              scrollTo: { x: scrollX, autoKill: false },
+              duration: 1
+            });
+          }
+        });
+      });
+
+      const offset = -100 * ($sections.length - 1);
+      const scroll = 3000;
+      const scrollTween = gsap.to($sections, {
+        xPercent: offset,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $container,
+          pin: true,
+          scrub: 0.5,
+          end: `+=${scroll}`
+        }
+      });
+
+      $images.forEach($image => {
+        const intensity = Number($image.dataset.intensity);
+        gsap.fromTo(
+          $image,
+          { x: gsap.utils.interpolate("0%", "-100%", intensity) },
+          {
+            x: gsap.utils.interpolate("0%", "100%", intensity),
+            ease: "none",
+            scrollTrigger: {
+              trigger: $image,
+              containerAnimation: scrollTween,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      });
+
+      window.onload = function() {
+        const tl = gsap.timeline({ delay: 1 }),
+              firstBg = document.querySelectorAll('.text__first-bg'),
+              secBg = document.querySelectorAll('.text__second-bg'),
+              word = document.querySelectorAll('.text__word');
+
+        tl.to(firstBg, { duration: 0.2, scaleX: 1 })
+          .to(secBg, { duration: 0.2, scaleX: 1 })
+          .to(word, { duration: 0.1, opacity: 1 }, "-=0.1")
+          .to(firstBg, { duration: 0.2, scaleX: 0 })
+          .to(secBg, { duration: 0.2, scaleX: 0 });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trends and developments - ICT Media & Design</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="new.css" />
+  </head>
+  <body id="page2">
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <nav>
+        <ul>
+          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li>
+            <a href="#">Learning Outcomes</a>
+            <ul class="dropdown">
+              <li><a href="technical.html">Technical Skills</a></li>
+              <li><a href="proffesional.html">Professional Skills</a></li>
+            </ul>
+          </li>
+          <li><a href="#">References</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container" data-scroll="container">
+        <section class="section" data-scroll="section" id="main-page">
+          <div class="page">
+            <p class="text">
+              <span class="text__first">
+                <span class="text__word">Feedback and Reflection</span>
+                <span class="text__first-bg"></span>
+              </span>
+              <br />
+              <span class="text__second">
+                <span class="text__word">ICT Media & Design</span>
+                <span class="text__second-bg"></span>
+              </span>
+            </p>
+            <div class="scroll-down">SCROLL</div>
+          </div>
+        </section>
+
+        <section class="section" data-scroll="section" id="about">
+          <div class="content">
+            <div>
+              <h2>Learning goal</h2>
+              <p>
+                You plan your assignments efficiently and realistically. You work result-oriented on your assignments. You recognize learning needs in yourself, are open to feedback, and reflect on this.
+            </div>
+          </div>
+        </section>
+        <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Action</h2>
+                <p>
+                  We planned our assignments efficiently and realistically.
+We worked result-oriented on our assignments.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Feedback and reflection</h2>
+                <p>
+                  We reflected on the feedback received. With the interview transcript and every ther feedback from the teacher we understood what is needed
+                  and now we are upgrating our work.
+                </p>
+              </div>
+            </div>
+          </section>
+        
+
+      </div>
+    </main>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      const $container = document.querySelector('.container');
+      const $sections = gsap.utils.toArray("[data-scroll='section']");
+      const $images = gsap.utils.toArray("[data-scroll='image']");
+
+      document.querySelectorAll(".anchor").forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute("href");
+          const target = document.querySelector(targetId);
+          if (target) {
+            const containerRect = $container.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const scrollX = targetRect.left - containerRect.left;
+
+            gsap.to($container, {
+              scrollTo: { x: scrollX, autoKill: false },
+              duration: 1
+            });
+          }
+        });
+      });
+
+      const offset = -100 * ($sections.length - 1);
+      const scroll = 3000;
+      const scrollTween = gsap.to($sections, {
+        xPercent: offset,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $container,
+          pin: true,
+          scrub: 0.5,
+          end: `+=${scroll}`
+        }
+      });
+
+      $images.forEach($image => {
+        const intensity = Number($image.dataset.intensity);
+        gsap.fromTo(
+          $image,
+          { x: gsap.utils.interpolate("0%", "-100%", intensity) },
+          {
+            x: gsap.utils.interpolate("0%", "100%", intensity),
+            ease: "none",
+            scrollTrigger: {
+              trigger: $image,
+              containerAnimation: scrollTween,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      });
+
+      window.onload = function() {
+        const tl = gsap.timeline({ delay: 1 }),
+              firstBg = document.querySelectorAll('.text__first-bg'),
+              secBg = document.querySelectorAll('.text__second-bg'),
+              word = document.querySelectorAll('.text__word');
+
+        tl.to(firstBg, { duration: 0.2, scaleX: 1 })
+          .to(secBg, { duration: 0.2, scaleX: 1 })
+          .to(word, { duration: 0.1, opacity: 1 }, "-=0.1")
+          .to(firstBg, { duration: 0.2, scaleX: 0 })
+          .to(secBg, { duration: 0.2, scaleX: 0 });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trends and developments - ICT Media & Design</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="new.css" />
+  </head>
+  <body id="page2">
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <nav>
+        <ul>
+          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li>
+            <a href="#">Learning Outcomes</a>
+            <ul class="dropdown">
+              <li><a href="technical.html">Technical Skills</a></li>
+              <li><a href="proffesional.html">Professional Skills</a></li>
+            </ul>
+          </li>
+          <li><a href="#">References</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container" data-scroll="container">
+        <section class="section" data-scroll="section" id="main-page">
+          <div class="page">
+            <p class="text">
+              <span class="text__first">
+                <span class="text__word">Trends and developments</span>
+                <span class="text__first-bg"></span>
+              </span>
+              <br />
+              <span class="text__second">
+                <span class="text__word">ICT Media & Design</span>
+                <span class="text__second-bg"></span>
+              </span>
+            </p>
+            <div class="scroll-down">SCROLL</div>
+          </div>
+        </section>
+
+        <section class="section" data-scroll="section" id="about">
+          <div class="content">
+            <div>
+              <h2>Learning goal</h2>
+              <p>
+                You have studied the various developments in the area of digital experience design. You have formed an opinion about it. Based on this you justify your choice of study direction in this domain.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Action</h2>
+                <p>
+                  For working with Hera I followed the presentation in Canvas and learned how to send a URL in or
+                  der to submit my personal portfolio <br></br> Explored various design inspirations and trends from platforms like Dribbble, 
+                  Pinterest, YouTube, and gaming websites to form an opinion about digital experience design.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Research</h2>
+                <p>
+                  I didn't have problems with working with Hera also I did a small research only by looking at the presentation
+                  <br></br> For research on Javascript I watched YouTube, used websites like freeCodeCamp, Codeacademy, Learn Javascript and when I had
+                  complicated questions I asked AI tools.Researched design trends, color schemes, and animations to incorporate into the website design.
+
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Feedback</h2>
+                <p>
+                  Received feedback on the need to create prototypes before coding the website, which helped streamline the development process.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Reflection</h2>
+                <p>
+                  I learnt that in order to make the things easier I have to start with figma first, that way it will me not only easier for me but for the teachers too 
+                  because they will see what I am trying to do and will help me.Developed an understanding of current design trends and formed an opinion on the direction of 
+                  digital experience design based on research and feedback.
+                </p>
+              </div>
+            </div>
+          </section>
+          
+
+      </div>
+    </main>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      const $container = document.querySelector('.container');
+      const $sections = gsap.utils.toArray("[data-scroll='section']");
+      const $images = gsap.utils.toArray("[data-scroll='image']");
+
+      document.querySelectorAll(".anchor").forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute("href");
+          const target = document.querySelector(targetId);
+          if (target) {
+            const containerRect = $container.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const scrollX = targetRect.left - containerRect.left;
+
+            gsap.to($container, {
+              scrollTo: { x: scrollX, autoKill: false },
+              duration: 1
+            });
+          }
+        });
+      });
+
+      const offset = -100 * ($sections.length - 1);
+      const scroll = 3000;
+      const scrollTween = gsap.to($sections, {
+        xPercent: offset,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $container,
+          pin: true,
+          scrub: 0.5,
+          end: `+=${scroll}`
+        }
+      });
+
+      $images.forEach($image => {
+        const intensity = Number($image.dataset.intensity);
+        gsap.fromTo(
+          $image,
+          { x: gsap.utils.interpolate("0%", "-100%", intensity) },
+          {
+            x: gsap.utils.interpolate("0%", "100%", intensity),
+            ease: "none",
+            scrollTrigger: {
+              trigger: $image,
+              containerAnimation: scrollTween,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      });
+
+      window.onload = function() {
+        const tl = gsap.timeline({ delay: 1 }),
+              firstBg = document.querySelectorAll('.text__first-bg'),
+              secBg = document.querySelectorAll('.text__second-bg'),
+              word = document.querySelectorAll('.text__word');
+
+        tl.to(firstBg, { duration: 0.2, scaleX: 1 })
+          .to(secBg, { duration: 0.2, scaleX: 1 })
+          .to(word, { duration: 0.1, opacity: 1 }, "-=0.1")
+          .to(firstBg, { duration: 0.2, scaleX: 0 })
+          .to(secBg, { duration: 0.2, scaleX: 0 });
+      }
+    </script>
+  </body>
+</html>

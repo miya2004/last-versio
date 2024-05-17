@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Trends and developments - ICT Media & Design</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js"></script>
+    <link rel="stylesheet" href="new.css" />
+  </head>
+  <body id="page2">
+    <header>
+      <a href="#" class="logo">Logo</a>
+      <nav>
+        <ul>
+          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li>
+            <a href="#">Learning Outcomes</a>
+            <ul class="dropdown">
+              <li><a href="technical.html">Technical Skills</a></li>
+              <li><a href="proffesional.html">Professional Skills</a></li>
+            </ul>
+          </li>
+          <li><a href="#">References</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="container" data-scroll="container">
+        <section class="section" data-scroll="section" id="main-page">
+          <div class="page">
+            <p class="text">
+              <span class="text__first">
+                <span class="text__word">Project Organisation</span>
+                <span class="text__first-bg"></span>
+              </span>
+              <br />
+              <span class="text__second">
+                <span class="text__word">ICT Media & Design</span>
+                <span class="text__second-bg"></span>
+              </span>
+            </p>
+            <div class="scroll-down">SCROLL</div>
+          </div>
+        </section>
+
+        <section class="section" data-scroll="section" id="about">
+          <div class="content">
+            <div>
+              <h2>Learning goal</h2>
+              <p>
+                For a given assignment you – with guidance - make a planning (timing & part-tasks) with your team members. You make agreements about the expected quality. 
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Action</h2>
+                <p>
+                  We formed a team with friends and friendly members.
+We chose to create a website for students to find friends with similar hobbies.
+We had a standup meeting to decide on group rules.
+We followed the teacher's advice to brainstorm individually first, then combine ideas.
+We worked step-by-step on our Project Plan, including Team Charter, Moscow Table, Gantt Chart, and Trello.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Research</h2>
+                <p>
+                  We collected ideas from various websites and platforms during the  process. The teacher advice us
+                  to look at diffrent platforms similiar to our website and to get inspiration from there. We didn't start coding so our research 
+                  is minimal. We only looked at the canva theme for doing the brainstorm and team chart, also the exampled project plan in canva.
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Results</h2>
+                <p>
+                  pic
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Feedback</h2>
+                <p>
+                  pic
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Reflection</h2>
+                <p>
+                  We learned from the feedback on our persona, survey, and interview transcripts, which were not good enough initially.
+We are now working on improving those areas based on the feedback.
+                </p>
+              </div>
+            </div>
+          </section>
+
+      </div>
+    </main>
+
+    <script>
+      gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+      const $container = document.querySelector('.container');
+      const $sections = gsap.utils.toArray("[data-scroll='section']");
+      const $images = gsap.utils.toArray("[data-scroll='image']");
+
+      document.querySelectorAll(".anchor").forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const targetId = e.target.getAttribute("href");
+          const target = document.querySelector(targetId);
+          if (target) {
+            const containerRect = $container.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
+            const scrollX = targetRect.left - containerRect.left;
+
+            gsap.to($container, {
+              scrollTo: { x: scrollX, autoKill: false },
+              duration: 1
+            });
+          }
+        });
+      });
+
+      const offset = -100 * ($sections.length - 1);
+      const scroll = 3000;
+      const scrollTween = gsap.to($sections, {
+        xPercent: offset,
+        ease: "none",
+        scrollTrigger: {
+          trigger: $container,
+          pin: true,
+          scrub: 0.5,
+          end: `+=${scroll}`
+        }
+      });
+
+      $images.forEach($image => {
+        const intensity = Number($image.dataset.intensity);
+        gsap.fromTo(
+          $image,
+          { x: gsap.utils.interpolate("0%", "-100%", intensity) },
+          {
+            x: gsap.utils.interpolate("0%", "100%", intensity),
+            ease: "none",
+            scrollTrigger: {
+              trigger: $image,
+              containerAnimation: scrollTween,
+              start: "left right",
+              end: "right left",
+              scrub: true,
+              invalidateOnRefresh: true,
+            },
+          }
+        );
+      });
+
+      window.onload = function() {
+        const tl = gsap.timeline({ delay: 1 }),
+              firstBg = document.querySelectorAll('.text__first-bg'),
+              secBg = document.querySelectorAll('.text__second-bg'),
+              word = document.querySelectorAll('.text__word');
+
+        tl.to(firstBg, { duration: 0.2, scaleX: 1 })
+          .to(secBg, { duration: 0.2, scaleX: 1 })
+          .to(word, { duration: 0.1, opacity: 1 }, "-=0.1")
+          .to(firstBg, { duration: 0.2, scaleX: 0 })
+          .to(secBg, { duration: 0.2, scaleX: 0 });
+      }
+    </script>
+  </body>
+</html>
