@@ -52,8 +52,10 @@
             <div>
               <h2>Learning goal</h2>
               <p>
-                For a given assignment you – with guidance - make a planning (timing & part-tasks) with your team members. You make agreements about the expected quality. 
-              </p>
+              1. Trello - Utilize Trello as a project management tool for task organization and collaboration.<br></br>
+              2. Moscow table - Learning Outcome: Develop a prioritized list of project requirements using the MoSCoW method.<br></br>
+              3. Team Agreements -  Develop team agreements that promote effective collaboration and accountability.<br></br>
+              4. Team Charta - Develop a team charter that promotes effective collaboration and accountability.<br></br>
             </div>
           </div>
         </section>
@@ -62,11 +64,15 @@
               <div>
                 <h2>Action</h2>
                 <p>
-                  We formed a team with friends and friendly members.
-We chose to create a website for students to find friends with similar hobbies.
-We had a standup meeting to decide on group rules.
-We followed the teacher's advice to brainstorm individually first, then combine ideas.
-We worked step-by-step on our Project Plan, including Team Charter, Moscow Table, Gantt Chart, and Trello.
+                1. Trello - We started our planning by creating boards and lists to organize project tasks, assign tasks to team members,
+                track task progress and status, collaborate and communicate with team members. First we decided to add colors and each color will define 
+                where the certain task is.<br></br>
+                2.Moscow Table - Prioritize project requirements and features,
+                categorize requirements as Must-have, Should-have, Could-have, or Won't-have,
+                align priorities with project goals and stakeholder expectations. <br></br>
+                3.Team Agreements - Facilitate team discussions and document agreed-upon team norms and processes.We also did this late because we had to 
+                show where are we to the Thursday's teacher and we didn't have much so we started by doing the agreement and later on we got a feedback from the teacher.<br></br>
+                4.Team Charta - Define team roles and responsibilities, establish team norms and expectations, outline communication protocols and decision-making processes.
                 </p>
               </div>
             </div>
@@ -76,9 +82,13 @@ We worked step-by-step on our Project Plan, including Team Charter, Moscow Table
               <div>
                 <h2>Research</h2>
                 <p>
-                  We collected ideas from various websites and platforms during the  process. The teacher advice us
-                  to look at diffrent platforms similiar to our website and to get inspiration from there. We didn't start coding so our research 
-                  is minimal. We only looked at the canva theme for doing the brainstorm and team chart, also the exampled project plan in canva.
+                1. Trello -  Explore Trello features, integrations, and best practices for project management. (There wasn't a lot of research for trello)<br></br>
+                2. Moscow Table - First we did the brainstorming and got a feedback from my teachers. We did our Moscow table for the project plan but we changed it
+                at least 3 times after doing our survey and paper prototype and test the prototype with a user. When we finally test our prototype we had a clear vision about 
+                what we can deliver. For the Moscow we used a Canva to make it.<br></br>
+                3.Team Agreements - Me and my team looked and used the template that was provided in Canvas, then we started filling the agreement and decided to add rules 
+                and penalties. <br></br>
+                4. Team Charta - Effective communication strategies for teams. We also looked at exampled Charts in Canva and Google then we communicate and filled the Chart.
                 </p>
               </div>
             </div>
@@ -86,10 +96,29 @@ We worked step-by-step on our Project Plan, including Team Charter, Moscow Table
           <section class="section" data-scroll="section" id="about">
             <div class="content">
               <div>
-                <h2>Results</h2>
-                <p>
-                  pic
-                </p>
+                <h2>Click The Pictures To See Results</h2>
+                <div class="image-grid">
+                  <div class="image-container">
+                    <img src="trello.jpeg" alt="Image 1" class="thumbnail">
+                  </div>
+                  
+                  <div class="image-container">
+                    <img src="Moscow.jpeg" alt="Image 2" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="agreenments.jpeg" alt="Image 3" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="image9.jpeg" alt="Image 4" class="thumbnail">
+                  </div>
+
+                </div>
+                <div class="popup-overlay">
+                  <div class="popup">
+                    <span class="close-btn">&times;</span>
+                    <img src="" alt="" class="popup-image">
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -98,7 +127,8 @@ We worked step-by-step on our Project Plan, including Team Charter, Moscow Table
               <div>
                 <h2>Feedback</h2>
                 <p>
-                  pic
+                 We didn't had feedpulse on exactly this assignments but we did show it in our ptoject plan. Everything was good and for the 
+                 Team agreement the teacher told us that if there is a problem we had to talk with the teacher and not put "kicking out from the group" rule.
                 </p>
               </div>
             </div>
@@ -108,8 +138,8 @@ We worked step-by-step on our Project Plan, including Team Charter, Moscow Table
               <div>
                 <h2>Reflection</h2>
                 <p>
-                  We learned from the feedback on our persona, survey, and interview transcripts, which were not good enough initially.
-We are now working on improving those areas based on the feedback.
+                I learned that doing my work on time and following the process of our work is really important and more easy. First I didn't get
+                why are we doing most of the planning but later on I realized that they make a big difference.
                 </p>
               </div>
             </div>
@@ -188,6 +218,31 @@ We are now working on improving those areas based on the feedback.
           .to(firstBg, { duration: 0.2, scaleX: 0 })
           .to(secBg, { duration: 0.2, scaleX: 0 });
       }
+
+     
+  const thumbnails = document.querySelectorAll('.thumbnail');
+  const popupOverlay = document.querySelector('.popup-overlay');
+  const popupImage = document.querySelector('.popup-image');
+  const closeBtn = document.querySelector('.close-btn');
+
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+      const imageSrc = thumbnail.src;
+      popupImage.src = imageSrc;
+      popupOverlay.style.display = 'flex';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popupOverlay.style.display = 'none';
+  });
+
+  popupOverlay.addEventListener('click', (event) => {
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+
     </script>
   </body>
 </html>
