@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trends and developments - ICT Media & Design</title>
+    <title>Exploratory Research - ICT Media & Design</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/ScrollToPlugin.min.js"></script>
@@ -14,7 +14,7 @@
       <a href="#" class="logo">Logo</a>
       <nav>
         <ul>
-          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="#">Projects</a></li>
           <li>
             <a href="#">Learning Outcomes</a>
@@ -52,7 +52,10 @@
             <div>
               <h2>Learning goal</h2>
               <p>
-                You explore and ask questions throughout the solution process. You answer questions by using an appropriate approach: pragmatic, critical and based on multiple sources.
+                1.Brainstorming - Facilitate effective brainstorming sessions to generate innovative ideas and solutions.<br></br>
+                2.High-Low Risk -  Conduct risk analysis and develop mitigation strategies for project risks.<br></br>
+                3.Inspiration for the project website -  Conduct competitive analysis and gather inspiration from existing projects.
+
               </p>
             </div>
           </div>
@@ -62,8 +65,11 @@
               <div>
                 <h2>Action</h2>
                 <p>
-                  We explored and asked questions throughout the solution process.
-We used appropriate approaches (pragmatic, critical, and multiple sources) to answer questions.
+                  1.Brainstorming - Conduct brainstorming sessions using various techniques for the project. First we had a lecture
+                  about the brainstorming and the teacher suggested to brainstorm on our own first and then combine every idea together and start 
+                  brainstorming new ideas. Thats how we did it. And end up with the final result that we used for our prototype.<br></br>
+                  2.High-Low Risk - Identify and categorize project risks, and develop mitigation plans.  <br></br>
+                  3.Inspiration from the project - Research and analyze relevant websites or applications for inspiration.
                 </p>
               </div>
             </div>
@@ -73,12 +79,71 @@ We used appropriate approaches (pragmatic, critical, and multiple sources) to an
               <div>
                 <h2>Research</h2>
                 <p>
-                  Each team member researched different websites for the project, contributing to a shared file.
+                  1.Brainstorming - We didn't want to use a lot of internet so first we decided to imagine the website and brainstorm but for more ideas we
+                  ended up searching online what could we add.<br></br>
+                  2.High-Low Risk - With the help of our brainstorming table and the exampled presentation from canvas we marked with 
+                  colourful markers our High-Low risks first on paper and then we made it on power point.<br></br>
+                  3.Inspiration from the project - We went to 2 diffrent websites that are with the same topic as ours, analyzed most popular social
+                  media platforms and got ideas from the teachers.<br></br>
                 </p>
               </div>
             </div>
           </section>
-          
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Click The Pictures To See Results</h2>
+                <div class="image-grid">
+                  <div class="image-container">
+                    <img src="brainstorming.JPG" alt="Image 1" class="thumbnail">
+                  </div>
+                  
+                  <div class="image-container">
+                    <img src="highlow.jpeg" alt="Image 2" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="highlowpaper.jpeg" alt="Image 3" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="image7.jpeg" alt="Image 4" class="thumbnail">
+                  </div>
+
+                </div>
+                <div class="popup-overlay">
+                  <div class="popup">
+                    <span class="close-btn">&times;</span>
+                    <img src="" alt="" class="popup-image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Feedback</h2>
+                <p>
+                1. Brainstorming - Brainstorming we did a great job and we finished with our brainstorming in a day but we didn't get a feedpulse because we 
+                mainly asked for advice. <br></br>
+                2.High-Low Risk - We presented in front of the class and everything went well.<br></br>
+                3.Inspiration from the project website - We showed our paper prototype and with it we showed our competitive analysis too, we had
+                a positive feedback and got ideas to visit a few more websites.<br></br>
+                </p>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Reflection</h2>
+                <p>
+                  My reflection from this assignments is that I realized that we didn't ask for a feedpulse for everything at first but I don't worry about That
+                  because we fixed it and now for the new assignments we got a feedback for almost everything.
+                </p>
+              </div>
+            </div>
+          </section>
+         
          
 
       </div>
@@ -154,6 +219,29 @@ We used appropriate approaches (pragmatic, critical, and multiple sources) to an
           .to(firstBg, { duration: 0.2, scaleX: 0 })
           .to(secBg, { duration: 0.2, scaleX: 0 });
       }
+      const thumbnails = document.querySelectorAll('.thumbnail');
+  const popupOverlay = document.querySelector('.popup-overlay');
+  const popupImage = document.querySelector('.popup-image');
+  const closeBtn = document.querySelector('.close-btn');
+
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+      const imageSrc = thumbnail.src;
+      popupImage.src = imageSrc;
+      popupOverlay.style.display = 'flex';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popupOverlay.style.display = 'none';
+  });
+
+  popupOverlay.addEventListener('click', (event) => {
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+
     </script>
   </body>
 </html>
