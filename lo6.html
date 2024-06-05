@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,10 +12,10 @@
   </head>
   <body id="page2">
     <header>
-      <a href="#" class="logo">Logo</a>
+      <a href="#" class="logo"></a>
       <nav>
         <ul>
-          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="#">Projects</a></li>
           <li>
             <a href="#">Learning Outcomes</a>
@@ -23,7 +24,7 @@
               <li><a href="proffesional.html">Professional Skills</a></li>
             </ul>
           </li>
-          <li><a href="#">References</a></li>
+         
         </ul>
       </nav>
     </header>
@@ -52,9 +53,10 @@
             <div>
               <h2>Learning goal</h2>
               <p>
-                You have studied the various developments in the area of digital
-                experience design. You have formed an opinion about it. Based on
-                this you justify your choice of study direction in this domain.
+                1. Persona -Develop comprehensive user personas to understand target audience needs.<br></br>
+                2. Slideshow - Create effective slideshows to communicate project updates and information.<br></br>
+                3. Sitemap -  Develop a comprehensive sitemap to communicate the information architecture.<br></br>
+                4.Prototype Feedback -  Gather and incorporate stakeholder and user feedback on prototypes.<br></br>
               </p>
             </div>
           </div>
@@ -64,9 +66,14 @@
               <div>
                 <h2>Action</h2>
                 <p>
-                  We made posters following the principles of Gestalt and presented them as a group.
-We created a WhatsApp and Teams group chat to communicate, even when someone was sick.
-We included our teachers in our Git repository.
+                1. Persona - Develop prototypes (e.g., wireframes, mockups, interactive prototypes)
+                Identify the stakeholders and target users for feedback
+                Conduct usability testing or feedback sessions with the prototypes
+                Gather and analyze feedback from participants
+                Iterate and refine the prototypes based on the feedback<br></br>
+                2. Slideshow - Did the slideshow from Tuesday's lecture from Canvas<br></br>
+                3. Sitemap - Did I sidemap for my "Addopt an Animal website" by following the examples sidemaps on interner<br></br>
+                4.Prototype Feedback - Test the figma prototype with our teachers, peers and students from semester 2 and 3
                 </p>
               </div>
             </div>
@@ -74,9 +81,53 @@ We included our teachers in our Git repository.
           <section class="section" data-scroll="section" id="about">
             <div class="content">
               <div>
-                <h2>Research/h2>
+                <h2>Research</h2>
+                1. Persona - Study persona development, user research techniques, and data sources. Looked at our survey and interview transcript to desice how to do it.<br></br> 
+                2. Slideshow - Study presentation design principles, storytelling techniques, and delivery best practices.<br></br>
+                3. Sitemap - Study information architecture principles, sitemap design techniques, and best practices.<br></br> 
+                4.Prototype Feedback - Study usability testing methods, feedback collection techniques, and prototype iteration processes. </p>
+              </div>
+            </div>
+          </section>
+         
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Click The Pictures To See Results</h2>
+                <div class="image-grid">
+                  <div class="image-container">
+                    <img src="persona.jpeg" alt="Image 1" class="thumbnail">
+                  </div>
+                  
+                  <div class="image-container">
+                    <img src="paper1.webp" alt="Image 2" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="prototypepep.png" alt="Image 3" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="prototype2.png" alt="Image 4" class="thumbnail">
+                  </div>
+
+                </div>
+                <div class="popup-overlay">
+                  <div class="popup">
+                    <span class="close-btn">&times;</span>
+                    <img src="" alt="" class="popup-image">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Feedback</h2>
                 <p>
-                  We conducted research on different websites for our project.
+                  1. Persona - Pay more attention to my interview transcript but overall the teacher liked the persona<br></br> 
+                  2. Slideshow - proceed to get a feedback<br></br>
+                  3. Sitemap - showed the sitemap with my adopt an animal website and the teacher was happy with it<br></br> 
+                  4.Prototype Feedback - with all the feedback from the prototypes I didn't have problems yet but with every feedback my work is getting better.
                 </p>
               </div>
             </div>
@@ -84,10 +135,10 @@ We included our teachers in our Git repository.
           <section class="section" data-scroll="section" id="about">
             <div class="content">
               <div>
-                <h2>Feedback and reflection</h2>
+                <h2>Reflection</h2>
                 <p>
-                  We received feedback from the teacher on our posters and presentations.
-We are aware of potential biases and their consequences.
+               Overall for all the importance of the feedback is big because that way you learn more and also you develop your mind more. Now I
+               see that with every feedback the comments to add things are less.
                 </p>
               </div>
             </div>
@@ -167,6 +218,29 @@ We are aware of potential biases and their consequences.
           .to(firstBg, { duration: 0.2, scaleX: 0 })
           .to(secBg, { duration: 0.2, scaleX: 0 });
       }
+      const thumbnails = document.querySelectorAll('.thumbnail');
+  const popupOverlay = document.querySelector('.popup-overlay');
+  const popupImage = document.querySelector('.popup-image');
+  const closeBtn = document.querySelector('.close-btn');
+
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+      const imageSrc = thumbnail.src;
+      popupImage.src = imageSrc;
+      popupOverlay.style.display = 'flex';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popupOverlay.style.display = 'none';
+  });
+
+  popupOverlay.addEventListener('click', (event) => {
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+
     </script>
   </body>
 </html>
