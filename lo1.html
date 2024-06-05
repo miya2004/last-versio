@@ -14,7 +14,7 @@
       <a href="#" class="logo">Logo</a>
       <nav>
         <ul>
-          <li><a href="main.html" class="active">Home</a></li>
+          <li><a href="index.html" class="active">Home</a></li>
           <li><a href="#">Projects</a></li>
           <li>
             <a href="#">Learning Outcomes</a>
@@ -52,7 +52,7 @@
             <div>
               <h2>Learning goal</h2>
               <p>
-                You have studied the various developments in the area of digital experience design. You have formed an opinion about it. Based on this you justify your choice of study direction in this domain.
+                Responsive Website
               </p>
             </div>
           </div>
@@ -66,6 +66,33 @@
                   der to submit my personal portfolio <br></br> Explored various design inspirations and trends from platforms like Dribbble, 
                   Pinterest, YouTube, and gaming websites to form an opinion about digital experience design.
                 </p>
+          </section>
+          <section class="section" data-scroll="section" id="about">
+            <div class="content">
+              <div>
+                <h2>Click The Pictures To See Results</h2>
+                <div class="image-grid">
+                  <div class="image-container">
+                    <img src="trello.jpeg" alt="Image 1" class="thumbnail">
+                  </div>
+                  
+                  <div class="image-container">
+                    <img src="Moscow.jpeg" alt="Image 2" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="agreenments.jpeg" alt="Image 3" class="thumbnail">
+                  </div>
+                  <div class="image-container">
+                    <img src="image9.jpeg" alt="Image 4" class="thumbnail">
+                  </div>
+
+                </div>
+                <div class="popup-overlay">
+                  <div class="popup">
+                    <span class="close-btn">&times;</span>
+                    <img src="" alt="" class="popup-image">
+                  </div>
+                </div>
               </div>
             </div>
           </section>
@@ -180,6 +207,29 @@
           .to(firstBg, { duration: 0.2, scaleX: 0 })
           .to(secBg, { duration: 0.2, scaleX: 0 });
       }
+      const thumbnails = document.querySelectorAll('.thumbnail');
+  const popupOverlay = document.querySelector('.popup-overlay');
+  const popupImage = document.querySelector('.popup-image');
+  const closeBtn = document.querySelector('.close-btn');
+
+  thumbnails.forEach(thumbnail => {
+    thumbnail.addEventListener('click', () => {
+      const imageSrc = thumbnail.src;
+      popupImage.src = imageSrc;
+      popupOverlay.style.display = 'flex';
+    });
+  });
+
+  closeBtn.addEventListener('click', () => {
+    popupOverlay.style.display = 'none';
+  });
+
+  popupOverlay.addEventListener('click', (event) => {
+    if (event.target === popupOverlay) {
+      popupOverlay.style.display = 'none';
+    }
+  });
+
     </script>
   </body>
 </html>
