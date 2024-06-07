@@ -62,12 +62,21 @@
               <div>
                 <h2>Action</h2>
                 <p>
-                  1.Survey - We had to take into account every answer so we can develop our persona and website.
-                  2.Persona - For the persona we analyzed our survey and made sure to make the persona based on the overall answers 
+                  1.Survey - We had to take into account every answer so we can develop our persona and website.<a href="https://docs.google.com/forms/d/e/1FAIpQLSd5coMOvgfgO6qO-M12a0ZV23DtxqxLar0GTBr7d8mq0NgJsA/viewform?amp;usp=embed_facebook">Click To See Survey</a><br></br>
+                  2.Persona - For the persona we analyzed our survey and made sure to make the persona based on the overall answers <br></br>
                   3.Portfolio - For the portfolio my target group is the teachers and the main content is learning outcomes.
-                  Knowing that in my second submission I focused on the content so I can show my learning cycle.
+                  Knowing that in my second submission I focused on the content so I can show my learning cycle.<br></br>
                   4.Website for group project - Our target group in the project group are mainly students we made a persona so we can imagine what our user look like and what they need.
                 </p>
+                <div class="wrapper">
+                  <i id="left" class="fa-solid fa-angle-left"></i>
+                  <div class="carousel">
+                    <img src="animal2.jpg" alt="img" draggable="false">
+                    <img src="activity.png" alt="img" draggable="false">
+
+                  </div>
+                  <i id="right" class="fa-solid fa-angle-right"></i>
+                </div>
               </div>
             </div>
           </section>
@@ -76,58 +85,22 @@
               <div>
                 <h2>Research</h2>
                 <p>
-                  1.Survey - We didn't do much research we straightly went to make the survey without thinking a lot about the questions.
-                  2.Persona  - for research we went through out prototype and asked a student to test it too and based on that and the interview we made our persona.
+                  1.Survey - We didn't do much research we straightly went to make the survey without thinking a lot about the questions.<br></br>
+                  2.Persona  - for research we went through out prototype and asked a student to test it too and based on that and the interview we made our persona.<br></br>
                   3.Portfolio - For my portfolio I did a lot of research. As I was learning Java before I am still not good so i went to multiple websites, youtube and 
-                  and for inspiration too. For html and css I mostly got help from trying and changing the code multiple times also with the more difficult functions I got help from YouTube.
+                  and for inspiration too. For html and css I mostly got help from trying and changing the code multiple times also with the more difficult functions I got help from YouTube.<br></br>
                   4.Website for group project - Our target group are mostly students and from all the documentation and activities we created our persona. With constantly asking for a feedback 
                   we made changes to our prototype to the desired look.
                 </p>
               </div>
             </div>
           </section>
-          <section class="section" data-scroll="section" id="about">
-            <div class="content">
-              <div>
-                <h2>Click The Pictures To See Results</h2>
-                <div class="image-grid">
-
-                  <div class="image-container">
-                    <img src="persona.jpeg" alt="Image 2" class="thumbnail">
-                  </div>
-                  <div class="image-container">
-                    <img src="agreenments.jpeg" alt="Image 3" class="thumbnail">
-                  </div>
-
-                </div>
-                <div class="popup-overlay">
-                  <div class="popup">
-                    <span class="close-btn">&times;</span>
-                    <img src="" alt="" class="popup-image">
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+         
           <section class="section" data-scroll="section" id="about">
             <div class="content">
               <div>
                 <h2>Feedback Click To See (It will show on Research page (updating currently))</h2>
-                <div class="image-grid"></div>
-                <div class="image-container">
-                  <div class="image-container">
-                    <img src="survey.png" alt="Image 3" class="thumbnail">
-                  </div>
-                  <img src="myf1.png" alt="Image 2" class="thumbnail">
-                </div>
-                <div class="image-container">
-                  <img src="myf2.png" alt="Image 3" class="thumbnail">
-                </div>
-                <div class="image-container">
-                  <img src="myf3.png" alt="Image 3" class="thumbnail">
-                </div>
-              </div>
-            </div>
+                
           </section>
           <section class="section" data-scroll="section" id="about">
             <div class="content">
@@ -215,28 +188,83 @@
           .to(firstBg, { duration: 0.2, scaleX: 0 })
           .to(secBg, { duration: 0.2, scaleX: 0 });
       }
-      const thumbnails = document.querySelectorAll('.thumbnail');
-  const popupOverlay = document.querySelector('.popup-overlay');
-  const popupImage = document.querySelector('.popup-image');
-  const closeBtn = document.querySelector('.close-btn');
+    //here starts the wrapper
 
-  thumbnails.forEach(thumbnail => {
-    thumbnail.addEventListener('click', () => {
-      const imageSrc = thumbnail.src;
-      popupImage.src = imageSrc;
-      popupOverlay.style.display = 'flex';
+const carousel = document.querySelector(".carousel"),
+firstImg = carousel.querySelectorAll("img")[0],
+arrowIcons = document.querySelectorAll(".wrapper i");
+
+let isDragStart = false, isDragging = false, prevPageX, prevScrollLeft, positionDiff;
+
+const showHideIcons = () => {
+    // showing and hiding prev/next icon according to carousel scroll left value
+    let scrollWidth = carousel.scrollWidth - carousel.clientWidth; // getting max scrollable width
+    arrowIcons[0].style.display = carousel.scrollLeft == 0 ? "none" : "block";
+    arrowIcons[1].style.display = carousel.scrollLeft == scrollWidth ? "none" : "block";
+}
+
+arrowIcons.forEach(icon => {
+    icon.addEventListener("click", () => {
+        let firstImgWidth = firstImg.clientWidth + 14; // getting first img width & adding 14 margin value
+        // if clicked icon is left, reduce width value from the carousel scroll left else add to it
+        carousel.scrollLeft += icon.id == "left" ? -firstImgWidth : firstImgWidth;
+        setTimeout(() => showHideIcons(), 60); // calling showHideIcons after 60ms
     });
-  });
+});
 
-  closeBtn.addEventListener('click', () => {
-    popupOverlay.style.display = 'none';
-  });
+const autoSlide = () => {
+    // if there is no image left to scroll then return from here
+    if(carousel.scrollLeft - (carousel.scrollWidth - carousel.clientWidth) > -1 || carousel.scrollLeft <= 0) return;
 
-  popupOverlay.addEventListener('click', (event) => {
-    if (event.target === popupOverlay) {
-      popupOverlay.style.display = 'none';
+    positionDiff = Math.abs(positionDiff); // making positionDiff value to positive
+    let firstImgWidth = firstImg.clientWidth + 14;
+    // getting difference value that needs to add or reduce from carousel left to take middle img center
+    let valDifference = firstImgWidth - positionDiff;
+
+    if(carousel.scrollLeft > prevScrollLeft) { // if user is scrolling to the right
+        return carousel.scrollLeft += positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
     }
-  });
+    // if user is scrolling to the left
+    carousel.scrollLeft -= positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff;
+}
+
+const dragStart = (e) => {
+    // updatating global variables value on mouse down event
+    isDragStart = true;
+    prevPageX = e.pageX || e.touches[0].pageX;
+    prevScrollLeft = carousel.scrollLeft;
+}
+
+const dragging = (e) => {
+    // scrolling images/carousel to left according to mouse pointer
+    if(!isDragStart) return;
+    e.preventDefault();
+    isDragging = true;
+    carousel.classList.add("dragging");
+    positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX;
+    carousel.scrollLeft = prevScrollLeft - positionDiff;
+    showHideIcons();
+}
+
+const dragStop = () => {
+    isDragStart = false;
+    carousel.classList.remove("dragging");
+
+    if(!isDragging) return;
+    isDragging = false;
+    autoSlide();
+}
+
+carousel.addEventListener("mousedown", dragStart);
+carousel.addEventListener("touchstart", dragStart);
+
+document.addEventListener("mousemove", dragging);
+carousel.addEventListener("touchmove", dragging);
+
+document.addEventListener("mouseup", dragStop);
+carousel.addEventListener("touchend", dragStop);
+
+
 
     </script>
   </body>
