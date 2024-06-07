@@ -1,3 +1,4 @@
+
 @font-face {
     font-family: 'LEMONMILK';
     src: url('./assets/fonts/LEMONMILK-Medium.otf') format('opentype');
@@ -145,6 +146,9 @@
     transform: translateX(-150px);
     color: #ffffff;
     font-family: 'LEMONMILK';
+    margin-top: 20vh;
+    padding: 50px 0;
+  
   }
   .text__first,
   .text__second {
@@ -177,11 +181,12 @@
   }
   
   #about {
-    padding: 80px; /* space inside the section */
-    font-size: 2vmin; /* reading size */
-    line-height: 1.6; /* line height */
+    padding: 80px  ; 
+    font-size: 2vmin; 
+    line-height:1.2; 
+    height: auto;
     display: flex;
-    flex-direction: column; /* stacks children vertically */
+    flex-direction: column; 
     background-color: #92e1cb;
   }
   
@@ -204,7 +209,7 @@
     position: absolute;
     margin-left: 130px;
     left: 1px;
-    margin-bottom: 280px;
+    margin-bottom: 90px;
     z-index: 1;
     max-width: 500px;
     padding: 10px;
@@ -218,7 +223,7 @@
   
   .thumbnail {
     width: 100%;
-    height: 100px;
+    height: 80px;
     object-fit: cover;
     cursor: pointer;
   }
@@ -261,3 +266,76 @@
     color: #fff;
     cursor: pointer;
   }
+  .wrapper {
+    display: flex;
+    max-width: 1200px;
+    position: relative;
+  }
+  
+  
+  .wrapper i {
+    top: 50%;
+    height: 40px; /* Adjust the height to make the buttons smaller */
+    width: 40px; /* Adjust the width to make the buttons smaller */
+    color: #343f4f;
+    cursor: pointer;
+    font-size: 1rem; /* Adjust the font size if necessary */
+    position: absolute;
+    text-align: center;
+    line-height: 40px; /* Center the icon vertically */
+    background: #fff;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.1s linear;
+  }
+  
+  
+  .wrapper i:active {
+    transform: translateY(-50%) scale(0.9);
+  }
+  
+  .wrapper i:hover {
+    background: #f2f2f2;
+  }
+  
+  .wrapper i:first-child {
+    left: -22px;
+    display: none;
+  }
+  
+  .wrapper i:last-child {
+    right: -22px;
+  }
+  
+  .wrapper .carousel {
+    font-size: 0px;
+    cursor: pointer;
+    overflow: hidden;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+  }
+  
+  .carousel.dragging {
+    cursor: grab;
+    scroll-behavior: auto;
+  }
+  
+  .carousel.dragging img {
+    pointer-events: none;
+  }
+  
+  .carousel img {
+    height: 220px; /* Adjust height to match the square dimensions */
+    width: 220px; /* Adjust width to match the square dimensions */
+    object-fit: cover;
+    user-select: none;
+    margin-left: 14px;
+    border-radius: 20px; /* Add border-radius for rounded edges */
+  }
+  
+  .carousel img:first-child {
+    margin-left: 0px;
+  }
+  
+
+  
